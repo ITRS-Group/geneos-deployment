@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<netprobe
+	compatibility="1"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:noNamespaceSchemaLocation="http://schema.itrsgroup.com/GA2011.2-110303/netprobe.xsd"
+>
+	<selfAnnounce>
+		<enabled>true</enabled>
+		<retryInterval>60</retryInterval>
+		<requireReverseConnection>true</requireReverseConnection>
+		<probeName><hostname/><data>_INF_SA_</data><port/></probeName>
+		<managedEntity>
+			<name><hostname/><data>_INF_SA_</data><port/></name>
+			<attributes>
+				<attribute name="REGION">CHANGE_REGION_INFO</attribute>
+				<attribute
+				name="DATACENTER">CHANGE_DATACENTER_INFO</attribute>
+				<attribute name="COUNTRY">CHANGE_COUNTRY_INFO</attribute>
+				<attribute name="ENVIRONMENT">UAT</attribute>
+				<attribute name="OS">UNIX</attribute>
+				<attribute name="TYPE">INF</attribute>
+				<attribute name="SERVER">PHYSICAL</attribute>
+			</attributes>
+			<types>
+				<type>REGION_CHANGE_LINUX_UAT</type>
+				
+			</types>
+		</managedEntity>
+		<gateways>
+			<gateway>
+				<hostname>PRIMARY_GATEWAY</hostname>
+				<port>PORT1</port>
+			</gateway>
+			<gateway>
+				<hostname>SECONDARY_GATEWAY</hostname>
+				<port>PORT1</port>
+			</gateway>
+			<gateway>
+				<hostname>PRIMARY_GATEWAY</hostname>
+				<port>PORT2</port>
+			</gateway>
+			<gateway>
+				<hostname>SECONDARY_GATEWAY</hostname>
+				<port>PORT2</port>
+			</gateway>
+			<gateway>
+				<hostname>PRIMARY_GATEWAY</hostname>
+				<port>PORT3</port>
+			</gateway>
+			<gateway>
+				<hostname>SECONDARY_GATEWAY</hostname>
+				<port>PORT3</port>
+			</gateway>
+			<gateway>
+				<hostname>PRIMARY_GATEWAY</hostname>
+				<port>PORT4</port>
+			</gateway>
+			<gateway>
+				<hostname>SECONDARY_GATEWAY</hostname>
+				<port>PORT4</port>
+			</gateway>
+			<gateway>
+				<hostname>PRIMARY_GATEWAY</hostname>
+				<port>PORT5</port>
+			</gateway>
+			<gateway>
+				<hostname>SECONDARY_GATEWAY</hostname>
+				<port>PORT5</port>
+			</gateway>
+			<gateway>
+				<hostname>PRIMARY_GATEWAY</hostname>
+				<port>PORT6</port>
+			</gateway>
+			<gateway>
+				<hostname>SECONDARY_GATEWAY</hostname>
+				<port>PORT6</port>
+			</gateway>
+			<gateway>
+				<hostname>PRIMARY_GATEWAY</hostname>
+				<port>PORT7</port>
+			</gateway>
+			<gateway>
+				<hostname>SECONDARY_GATEWAY</hostname>
+				<port>PORT7</port>
+			</gateway>
+		</gateways>
+	</selfAnnounce>
+</netprobe>

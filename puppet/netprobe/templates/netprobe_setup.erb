@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<netprobe
+	compatibility="1"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:noNamespaceSchemaLocation="http://schema.itrsgroup.com/GA2011.2-110303/netprobe.xsd"
+>
+	<selfAnnounce>
+		<enabled>true</enabled>
+		<retryInterval>60</retryInterval>
+		<requireReverseConnection>true</requireReverseConnection>
+		<probeName><hostname/><data><%= @probename %></data><port/></probeName>
+		<managedEntity>
+			<name><hostname/><data><%= @probename %></data><port/></name>
+			<attributes>
+				<attribute name="REGION"><%= @attr_region %></attribute>
+				<attribute name="DATACENTER"><%= @attr_dc %></attribute>
+				<attribute name="COUNTRY"><%= @attr_country %></attribute>
+				<attribute name="ENVIRONMENT"><%= @attr_env %></attribute>
+				<attribute name="OS">LINUX</attribute>
+				<attribute name="TYPE"><%= @attr_type %></attribute>
+				<attribute name="SERVER"><%= @attr_server %></attribute>
+			</attributes>
+			<types>
+				<type><%= @region_type %></type>
+				
+			</types>
+		</managedEntity>
+		<gateways>
+			<gateway>
+				<hostname><%= @primary_gw %></hostname>
+				<port><%= @gw_port %></port>
+			</gateway>
+			<gateway>
+				<hostname><%= @secondary_gw %></hostname>
+				<port><%= @gw_port %></port>
+			</gateway>
+		</gateways>
+	</selfAnnounce>
+</netprobe>
+

@@ -1,0 +1,35 @@
+#!/bin/bash
+##################################################################
+
+## THIS FILE IS MAINTAINED BY PUPPET CHANGES WILL BE OVERRIDDEN ##
+
+##################################################################
+#
+# start script for ITRS Netprobe
+# description: ITRS Netprobe system monitoring daemon
+#
+if [[ $1 ]];then
+        port=$1
+else
+        echo "Please enter the port number for this probe instance or use the appropriate start script in /etc/init.d/"
+        echo "Ex. start_netprobe 7040"
+        exit
+fi
+
+netprobe=/opt/netprobe/netprobe.linux*
+log=/opt/netprobe/log/netprobe_${port}.log
+pid=/opt/netprobe/pid/netprobe_${port}.pid
+xml=/opt/netprobe/netprobe_${port}.xml
+user="svc.itrs"
+NICE="/bin/nice -n 19"
+
+if [[ $log && $pid ]];then
+	$NICE $netprobe `hostname` -port $port -setup $xml -nopassword >& $log &
+else
+        touch $log
+        touch $pid
+	$NICE $netprobe `hostname` -port $port -setup $xml -nopassword >& $log &
+fi
+
+echo `ps -ef | grep "${xml}" | grep -v grep | awk '{ print $2 }'` > $pid
+

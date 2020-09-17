@@ -1,0 +1,39 @@
+To install the self announcing netprobe using puppet, add the netprobe rpm found in
+the files directory into your yum repository first so that it is available using yum. 
+Then import the netprobe.pp file into your site.pp or copy the class declaration into 
+the appropriate node definition. 
+
+You should know the Gateway, Gateway Port, and Netprobe Ports to use this, as well as any
+other attributes you want to track. 
+
+Each instance of the netprobe class creates a separate service and xml file. This will
+allow you to create multiple netprobes to run on your servers and you can customize each
+to suit the environment or node. The naming scheme makes it easy to identify what port 
+each probe is using and what attributes are set for it. 
+
+e.g. /etc/init.d/netprobe_7040 will use netprobe_setup_7040.xml
+
+You'll need to adjust the variables in the init.pp to fit your environment. I left examples
+that should be easy to adjust. Puppet uses facts that all servers with a puppet agent 
+should be aware of and the other variables in local scope are custom. 
+
+Depending on how you have your nodes defined, you should be able to let puppet do the 
+rest for you. Enjoy!
+
+Created and packaged by j.perez 10.30.14
+
+../netprobe/
+├── files
+│   ├── netprobe-GA3-2.20_140610.x86_64.rpm
+│   ├── netprobe-GA3_32-0.22_141017.x86_64.rpm
+│   ├── netprobe.pp
+│   └── start_netprobe
+├── manifests
+│   └── init.pp
+├── README
+└── templates
+    ├── netprobe_init.erb
+    └── netprobe_setup.erb
+
+3 directories, 8 files
+
