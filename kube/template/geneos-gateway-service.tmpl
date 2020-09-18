@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: geneos-gateway-${name}-external
+spec:
+  type: LoadBalancer
+  selector:
+    app: geneos-gateway
+    id: ${name}
+  ports:
+    - port: 7039
+      targetPort: 7039

@@ -1,0 +1,49 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: geneos-gateway-${name}
+spec:
+  selector:
+    matchLabels:
+      app: geneos-gateway
+      id: ${name}
+  replicas: 1
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: geneos-gateway
+        id: ${name}
+    spec:
+      imagePullSecrets:
+        - name: regcred
+      securityContext:
+        runAsUser: 100
+        fsGroup: 101
+      containers:
+        - name: gateway
+          image: docker.itrsgroup.com/geneos-gateway:5.4.0
+          imagePullPolicy: Always
+          volumeMounts:
+            - name: config
+              mountPath: /gateway/config
+              readOnly: true
+            - name: persist
+              mountPath: /gateway/persist
+              readOnly: false
+          ports:
+            - containerPort: 7039
+      imagePullSecrets:
+        - name: docker.itrsgroup.com.cred
+      volumes:
+        - name: config
+          configMap:
+            name: geneos-gateway-${name}-config
+            items:
+              - key: gci
+                path: gateway.gci
+        - name: persist
+          persistentVolumeClaim:
+            claimName: geneos-gateway-${name}-pvc
+                

@@ -1,0 +1,25 @@
+#!/bin/bash
+
+usage() {
+    echo "create_gateway creates a set of gateway manifests for a single instance of a gateway"
+    echo "Usage: create_gateway <name> <licd>"
+    echo "   name: Name identifying the gateway"
+    echo "   licd: FQDN of the license demon server"
+    exit 1
+}
+
+create() {
+    local name=$1
+    local licd=$2
+    cat geneos-gateway-configmap.tmpl | sed  "s/\${name}/${name}/g" | sed "s/\${licd}/${licd}/g" > geneos-gateway-${name}-configmap.yaml
+    cat geneos-gateway-deployment.tmpl | sed  "s/\${name}/${name}/g" > geneos-gateway-${name}-deployment.yaml
+    cat geneos-gateway-service.tmpl | sed  "s/\${name}/${name}/g"  > geneos-gateway-${name}-service.yaml
+    echo "Please create a persistent volume claim called 'geneos-gateway-${name}-pvc'"
+}
+
+if [ $# != 2 ]; then
+    usage
+else
+    create $*
+    
+fi
