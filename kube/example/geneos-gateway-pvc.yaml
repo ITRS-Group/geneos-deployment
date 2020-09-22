@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  # Change example to a name identifying the gateway
+  name: geneos-gateway-example-pvc
+spec:
+  # Change `slow` to a storageClass supported in your cloud
+  # or remove this line and generate a `PersistentVolume` yaml file
+  storageClassName: slow
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi
