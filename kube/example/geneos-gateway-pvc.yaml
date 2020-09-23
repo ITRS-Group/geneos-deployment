@@ -4,9 +4,9 @@ metadata:
   # Change example to a name identifying the gateway
   name: geneos-gateway-example-pvc
 spec:
-  # Change `slow` to a storageClass supported in your cloud
-  # or remove this line and generate a `PersistentVolume` yaml file
-  storageClassName: slow
+  # If you are using a StorageClass to build the PersistentVolume that matches this PersistentVolumeClaim
+  # then uncomment the line below and set the correct storageClassName name for your cluster
+  #storageClassName: slow
   accessModes:
     - ReadWriteOnce
   resources:

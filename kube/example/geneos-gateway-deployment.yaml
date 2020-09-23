@@ -1,12 +1,14 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: geneos-example-gateway
+  # Change example to a name identifying the gateway
+  name: geneos-gateway-example
 spec:
   selector:
     matchLabels:
       app: geneos-gateway
-      id: DemoGateway
+      # Change example to a name identifying the gateway
+      id: example
   replicas: 1
   strategy:
     type: Recreate
@@ -14,16 +16,20 @@ spec:
     metadata:
       labels:
         app: geneos-gateway
-        id: DemoGateway
+        # Change example to a name identifying the gateway
+        id: example
     spec:
       imagePullSecrets:
+          # Name of the secret that contains the authentication key for
+          # docker.itrsgroup.com
         - name: regcred
       securityContext:
         runAsUser: 100
         fsGroup: 101
       containers:
         - name: gateway
-          image: docker.itrsgroup.com/geneos-gateway:5.4.0-SNAPSHOT-a027729d2
+          # Update the image to match the gateway you wish to use
+          image: docker.itrsgroup.com/gateway:5.4.0-SNAPSHOT-b9195ee84
           imagePullPolicy: Always
           volumeMounts:
             - name: config
@@ -36,8 +42,13 @@ spec:
       volumes:
         - name: config
           configMap:
-            name: geneos-example-gateway-config
+            # Change example to a name identifying the gateway
+            name: geneos-gateway-example-config
             items:
               - key: gci
                 path: gateway.gci
-                
+        - name: persist
+          persistentVolumeClaim:
+            # Change example to a name identifying the gateway
+            claimName: geneos-gateway-example-pvc
+          # Add Certificate secret here if needed     

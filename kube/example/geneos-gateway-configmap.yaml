@@ -1,8 +1,18 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: geneos-example-gateway-config
+  # Change example to a name identifying the gateway
+  name: geneos-gateway-example-config
 data:
+  # Command line options to use when starting the gateway
+  # To your access your licence daemon 
+  #   add  -licd-host and -licd-port
+  # To run securely 
+  #   add -ssl-certificate secret/cert.pem
+  #   create an kubernetes secret containing the contents of
+  #   the gateway certificate
+  #   add the secret as a volume in your deployment to be mounted at
+  #   /gateway/secret/cert.pem
   gci: |-
     -resources-dir /opt/gateway/resources
     -setup /gateway/persist/setup/gateway.setup.xml

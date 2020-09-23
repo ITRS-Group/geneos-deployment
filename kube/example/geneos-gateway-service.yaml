@@ -1,12 +1,17 @@
+# This service will be accessable via your cloud loadbalancer
+# Connect Active Console to the host and port the service is
+# published on
 apiVersion: v1
 kind: Service
 metadata:
-  name: geneos-example-gateway-external
+  # Change example to a name identifying the gateway
+  name: geneos-gateway-example-external
 spec:
   type: LoadBalancer
   selector:
     app: geneos-gateway
-    id: DemoGateway
+    # Change example to a name identifying the gateway
+    id: example
   ports:
     - port: 7039
       targetPort: 7039
