@@ -37,8 +37,6 @@ spec:
               readOnly: true
           ports:
             - containerPort: 7039
-      imagePullSecrets:
-        - name: docker.itrsgroup.com.cred
       volumes:
         - name: config
           configMap:
