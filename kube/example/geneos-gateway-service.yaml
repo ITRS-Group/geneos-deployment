@@ -9,9 +9,8 @@ metadata:
 spec:
   type: LoadBalancer
   selector:
-    app: geneos-gateway
     # Change example to a name identifying the gateway
-    id: example
+    app: geneos-gateway-example
   ports:
     - port: 7039
       targetPort: 7039

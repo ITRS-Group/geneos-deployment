@@ -6,18 +6,16 @@ metadata:
 spec:
   selector:
     matchLabels:
-      app: geneos-gateway
       # Change example to a name identifying the gateway
-      id: example
+      app: geneos-gateway-example
   replicas: 1
   strategy:
     type: Recreate
   template:
     metadata:
       labels:
-        app: geneos-gateway
         # Change example to a name identifying the gateway
-        id: example
+        app: geneos-gateway-example
     spec:
       imagePullSecrets:
           # Name of the secret that contains the authentication key for
